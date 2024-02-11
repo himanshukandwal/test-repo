@@ -1,0 +1,19 @@
+name: CI Stats Generation
+on:
+  workflow_dispatch: {}
+
+jobs:
+  ci-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            let commits = await github.rest.commits.listMilestones({
+              owner: 'apache',
+              repo: 'helix',
+            })
+            
+            let filteredCommits = commits.data.slice(0,3).map(c => c.sha)
+            console.log(filteredCommits)

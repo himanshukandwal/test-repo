@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "run_start_time": "2024-02-10T18:25:43.511Z",
+      "run_end_time": "2024-02-10T18:25:43.511Z",
+      "status" : "Passed",
+      "total_tests": 124,
+      "total_failed": 1,
+      "total_skipped": 2,
+      "annotations": [
+        {
+          "title": "TestSuite ► org.apache.helix.integration.task.TestIndependentTaskRebalancer ► testDifferentTasks",
+          "message": "Failed test found in:\n  helix-core/target/surefire-reports/TEST-TestSuite.xml\nError:\n  java.lang.AssertionError: expected:<true> but was:<false>",
+          "raw_details": "java.lang.AssertionError: expected:<true> but was:<false>\n\tat org.apache.helix.integration.task.TestIndependentTaskRebalancer.testDifferentTasks(TestIndependentTaskRebalancer.java:147)"
+        }
+      ]
+    }
+  ]
+}
