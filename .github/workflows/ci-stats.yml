@@ -10,7 +10,7 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            let commits = await github.rest.commits.list({
+            let commits = await github.rest.listCommits({
               owner: 'apache',
               repo: 'helix',
             })
