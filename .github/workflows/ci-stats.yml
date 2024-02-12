@@ -38,5 +38,6 @@ jobs:
             }
 
             job_check_runs.sort()
+            job_check_runs.reverse()
             console.log(job_check_runs)
 
