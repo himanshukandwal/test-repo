@@ -30,7 +30,7 @@ jobs:
               
               let first_run_response = await fetch("https://github.com/apache/helix/actions/runs/" + first_run)
               let first_run_response_str = await first_run_response.text()
-              let first_run_jobs_len = 
+              
               for (let i = 0; i < first_run_response_str.match(/job_\d+/g).length; i++) {
                 job_check_runs.push(first_run_response_str.match(/job_\d+/g)[i])
               }
