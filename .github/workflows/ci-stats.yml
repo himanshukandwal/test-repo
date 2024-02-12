@@ -26,11 +26,11 @@ jobs:
                 ref: commit
               })
               let check_run_url = commitCheckRuns.data.check_runs.slice(-1)[0].html_url
-              let jobRun = +check_run_url.replace("https://github.com/apache/helix/actions/runs/", "").replace(/\/job.*/, ""))
+              let jobRun = check_run_url.replace("https://github.com/apache/helix/actions/runs/", "").replace(/\/job.*/, "")
               
               let response = await fetch("https://github.com/apache/helix/actions/runs/" + jobRun)
-              console.log(await response.text())
-              
+              let text = await response.text()
+              console.log(text)
               lastJobRuns.push(jobRun)
             }
             console.log(lastJobRuns)
