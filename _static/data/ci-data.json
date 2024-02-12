@@ -7,6 +7,7 @@
       "total_passed": 124,
       "total_failed": 1,
       "total_skipped": 2,
+      "result_link": "",
       "annotations": [
         {
           "title": "TestSuite ► org.apache.helix.integration.task.TestIndependentTaskRebalancer ► testDifferentTasks",

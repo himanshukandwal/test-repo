@@ -55,6 +55,7 @@ jobs:
 
               ci_report_data = []
               if (check_run.name != "Tests Results") {
+                console.log(check_run)
                 let title = check_run.output.title
                 let total_passed = +title.match(/(\d+) passed/g)[0].replace(" passed", "")
                 let total_failed = +title.match(/(\d+) failed/g)[0].replace(" failed", "")
@@ -68,12 +69,13 @@ jobs:
                     "total_passed": total_passed,
                     "total_failed": total_failed,
                     "total_skipped": total_skipped,
+                    "result_link": check_run.html_url,
                     "annotations" : check_run_annotations
                   }
                 )
               }
             }
-            
+
             console.log(ci_report_data)
             
 
