@@ -83,5 +83,10 @@ jobs:
                 console.log(err);
               }
             });
+      - name: Commit and Push to CI reporting branch
+        run: |
+          git add *
+          git commit -m "Github Action Automated Run: Added Test data"
+          git push origin main
             
 
