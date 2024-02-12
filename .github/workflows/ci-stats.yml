@@ -16,4 +16,15 @@ jobs:
             })
             
             let filteredCommits = commits.data.slice(0,3).map(c => c.sha)
-            console.log(filteredCommits)
+
+            lastJobRuns = []
+            for (commit of filteredCommits) {
+              console.log(commit)
+              let commitCheckRuns = await github.rest.checks.listForRef({
+                owner: 'apache',
+                repo: 'helix',
+                ref: commit
+              })
+              console.log(commitCheckRuns.data.check_runs[-1])
+            }
+
