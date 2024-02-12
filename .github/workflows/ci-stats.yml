@@ -39,5 +39,41 @@ jobs:
 
             job_check_runs.sort()
             job_check_runs.reverse()
-            console.log(job_check_runs)
+
+            for (check_run_id of job_check_runs) {
+              let check_run = await github.rest.checks.get({
+                owner: 'apache',
+                repo: 'helix',
+                check_run_id: check_run_id
+              })
+
+              let check_run_annotations = await github.rest.checks.listAnnotations({
+                owner: 'apache',
+                repo: 'helix',
+                check_run_id: check_run_id
+              })
+
+              ci_report_data = []
+              if (check_run.name != "Tests Results") {
+                let title = check_run.output.title
+                let total_passed = +title.match(/(\d+) passed/g)[0].replace(" passed", "")
+                let total_failed = +title.match(/(\d+) failed/g)[0].replace(" failed", "")
+                let total_skipped = +title.match(/(\d+) skipped/g)[0].replace(" skipped", "")
+
+                ci_report_data.push(
+                  {
+                    "run_start_time": check_run.started_at,
+                    "run_end_time": check_run.completed_at,
+                    "status" : check_run.conclusion,
+                    "total_passed": total_passed,
+                    "total_failed": total_failed,
+                    "total_skipped": total_skipped,
+                    "annotations" : check_run_annotations
+                  }
+                )
+              }
+            }
+            
+            console.log(ci_report_data)
+            
 
