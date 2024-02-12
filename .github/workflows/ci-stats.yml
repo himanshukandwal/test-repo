@@ -25,9 +25,7 @@ jobs:
                 repo: 'helix',
                 ref: commit
               })
-              let check_run_str = commitCheckRuns.data.check_runs.slice(-1)
-              console.log(check_run_str)
-              check_run_url = JSON.parse(check_run_str).html_url
+              let check_run_url = commitCheckRuns.data.check_runs.slice(-1)[0].html_url
               console.log(check_run_url)
               lastJobRuns.push(+url.replace("https://github.com/apache/helix/actions/runs/", "").replace(/\/job.*/, ""))
             }
