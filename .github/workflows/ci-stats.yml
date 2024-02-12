@@ -39,7 +39,8 @@ jobs:
 
             job_check_runs.sort()
             job_check_runs.reverse()
-
+            
+            ci_report_data = []
             for (check_run_id of job_check_runs) {
               let check_run_response = await github.rest.checks.get({
                 owner: 'apache',
@@ -53,7 +54,6 @@ jobs:
                 check_run_id: check_run_id
               })
 
-              ci_report_data = []
               let check_run = check_run_response.data 
               let check_run_annotations = check_run_annotations_response.data
 
@@ -79,6 +79,11 @@ jobs:
               }
             }
 
-            console.log(ci_report_data)
+            var fs = require('fs');
+            fs.writeFile("test-repo/_static/data/ci-data.json", ci_report_data, function(err) {
+              if (err) {
+                console.log(err);
+              }
+            });
             
 
