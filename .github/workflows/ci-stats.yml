@@ -59,6 +59,7 @@ jobs:
 
               if (check_run.name != "Tests Results") {
                 let title = check_run.output.title
+                console.log(title)
 
                 let total_passed = +title.match(/(\d+) passed/g)[0].replace(" passed", "")
                 let total_failed = +title.match(/(\d+) failed/g)[0].replace(" failed", "")
