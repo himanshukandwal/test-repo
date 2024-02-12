@@ -17,7 +17,7 @@ jobs:
             
             let filteredCommits = commits.data.slice(0,3).map(c => c.sha)
 
-            lastJobRuns = []
+            job_check_runs = []
             for (commit of filteredCommits) {
               console.log(commit)
               let commitCheckRuns = await github.rest.checks.listForRef({
@@ -25,13 +25,15 @@ jobs:
                 repo: 'helix',
                 ref: commit
               })
-              let check_run_url = commitCheckRuns.data.check_runs.slice(-1)[0].html_url
-              let jobRun = check_run_url.replace("https://github.com/apache/helix/actions/runs/", "").replace(/\/job.*/, "")
+              let first_check_run_url = commitCheckRuns.data.check_runs.slice(-1)[0].html_url
+              let first_run = first_check_run_url.replace("https://github.com/apache/helix/actions/runs/", "").replace(/\/job.*/, "")
               
-              let response = await fetch("https://github.com/apache/helix/actions/runs/" + jobRun)
-              let text = await response.text()
-              console.log(text)
-              lastJobRuns.push(jobRun)
+              let first_run_response = await fetch("https://github.com/apache/helix/actions/runs/" + first_run)
+              let first_run_response_str = await first_run_response.text()
+              let first_run_jobs_len = 
+              for (let i = 0; i < first_run_response_str.match(/job_\d+/g).length; i++) {
+                job_check_runs.push(first_run_response_str.match(/job_\d+/g)[i])
+              }
             }
-            console.log(lastJobRuns)
+            console.log(job_check_runs)
 
