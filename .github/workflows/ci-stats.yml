@@ -78,11 +78,7 @@ jobs:
             }
 
             var fs = require('fs');
-            fs.readdirSync('.').forEach(file => {
-              console.log(file);
-            });
-            
-            fs.writeFile("test-repo/_static/data/ci-data.json", JSON.stringify(ci_report_data), function(err) {
+            fs.writeFile("./_static/data/ci-data.json", JSON.stringify(ci_report_data), function(err) {
               if (err) {
                 console.log(err);
               }
