@@ -31,10 +31,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td>${run.run_start_time}</td>
                     <td>${run.run_end_time}</td>
                     <td>${run.status}</td>
-                    <td>${run.total_tests}</td>
+                    <td>${run.total_passed}</td>
                     <td>${run.total_failed}</td>
                     <td>${run.total_skipped}</td>
-                    <td>${run.result_link}</td>
+                    <td><a href="${run.result_link}">${run.result_link}</a></td>
                 </tr>
             `).join('')}
         </tbody>
