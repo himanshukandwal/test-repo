@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(data => {
         // Display statistics tables
         const tablesContainer = document.getElementById("tables-container");
-        const ciRunTable = createTable(data.data, "CI Stats");
+        const ciRunTable = createTable(data, "CI Stats");
         tablesContainer.appendChild(ciRunTable);
 
         function createTable(data, title) {
@@ -14,8 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
           table.innerHTML = `
         <thead>
             <tr>
+                <th>Run ID</th>
                 <th>Run Start Time</th>
                 <th>Run End Time</th>
+                <th>Status</th>
                 <th>Total Tests</th>
                 <th>Total Failed</th>
                 <th>Total Skipped</th>
@@ -23,13 +25,16 @@ document.addEventListener("DOMContentLoaded", function () {
             </tr>
         </thead>
         <tbody>
-            ${data.map(stat => `
+            ${data.map(run => `
                 <tr>
-                    <td>${stat.run_start_time}</td>
-                    <td>${stat.run_end_time}</td>
-                    <td>${stat.total_tests}</td>
-                    <td>${stat.total_failed}</td>
-                    <td>${stat.total_failed}</td>
+                    <td>${run.id}</td>
+                    <td>${run.run_start_time}</td>
+                    <td>${run.run_end_time}</td>
+                    <td>${run.status}</td>
+                    <td>${run.total_tests}</td>
+                    <td>${run.total_failed}</td>
+                    <td>${run.total_skipped}</td>
+                    <td>${run.result_link}</td>
                 </tr>
             `).join('')}
         </tbody>

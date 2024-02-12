@@ -38,6 +38,7 @@ jobs:
 
             job_check_runs.sort()
             job_check_runs.reverse()
+            job_check_runs = job_check_runs.slice(0, 15)
             
             ci_report_data = []
             for (check_run_id of job_check_runs) {
@@ -63,6 +64,7 @@ jobs:
                 let total_failed = +title.match(/(\d+) failed/g)[0].replace(" failed", "")
                 let total_skipped = +title.match(/(\d+) skipped/g)[0].replace(" skipped", "")
                 let report_data = {
+                    "id": check_run.id,
                     "run_start_time": check_run.started_at,
                     "run_end_time": check_run.completed_at,
                     "status" : check_run.conclusion,
