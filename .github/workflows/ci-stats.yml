@@ -25,6 +25,6 @@ jobs:
                 repo: 'helix',
                 ref: commit
               })
-              console.log(commitCheckRuns.data.check_runs)
+              console.log(commitCheckRuns.data.check_runs[-1])
             }
 
