@@ -85,7 +85,7 @@ jobs:
             }
 
             var fs = require('fs');
-            fs.writeFile("./_static/data/ci-data.json", JSON.stringify(ci_report_data), function(err) {
+            fs.writeFile("./_static/data/ci-data.json", JSON.stringify(ci_report_data, null, 2), function(err) {
               if (err) {
                 console.log(err);
               }
