@@ -32,8 +32,11 @@ jobs:
               let first_run_response_str = await first_run_response.text()
               
               for (let i = 0; i < first_run_response_str.match(/job_\d+/g).length; i++) {
-                job_check_runs.push(first_run_response_str.match(/job_\d+/g)[i])
+                job_check_run = first_run_response_str.match(/job_\d+/g)[i].replace("job_", "")
+                job_check_runs.push(job_check_run)
               }
             }
+
+            job_check_runs.sort()
             console.log(job_check_runs)
 
