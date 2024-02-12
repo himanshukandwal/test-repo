@@ -57,7 +57,7 @@ jobs:
               let check_run = check_run_response.data 
               let check_run_annotations = check_run_annotations_response.data
 
-              if (check_run.name != "Tests Results") {
+              if (check_run.name === "Tests Results") {
                 console.log(check_run)
                 console.log(check_run.output)
                 let title = check_run.output.title
