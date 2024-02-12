@@ -63,9 +63,7 @@ jobs:
                 let total_passed = +title.match(/(\d+) passed/g)[0].replace(" passed", "")
                 let total_failed = +title.match(/(\d+) failed/g)[0].replace(" failed", "")
                 let total_skipped = +title.match(/(\d+) skipped/g)[0].replace(" skipped", "")
-
-                ci_report_data.push(
-                  {
+                let report_data = {
                     "run_start_time": check_run.started_at,
                     "run_end_time": check_run.completed_at,
                     "status" : check_run.conclusion,
@@ -74,8 +72,10 @@ jobs:
                     "total_skipped": total_skipped,
                     "result_link": check_run.html_url,
                     "annotations" : check_run_annotations
-                  }
-                )
+                }
+                
+                console.log(report_data)
+                ci_report_data.push(report_data)
               }
             }
 
