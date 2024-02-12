@@ -19,7 +19,6 @@ jobs:
 
             job_check_runs = []
             for (commit of filteredCommits) {
-              console.log(commit)
               let commitCheckRuns = await github.rest.checks.listForRef({
                 owner: 'apache',
                 repo: 'helix',
@@ -74,13 +73,12 @@ jobs:
                     "annotations" : check_run_annotations
                 }
                 
-                console.log(report_data)
                 ci_report_data.push(report_data)
               }
             }
 
             var fs = require('fs');
-            fs.writeFile("test-repo/_static/data/ci-data.json", ci_report_data, function(err) {
+            fs.writeFile("test-repo/_static/data/ci-data.json", JSON.stringify(ci_report_data), function(err) {
               if (err) {
                 console.log(err);
               }
